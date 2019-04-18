@@ -1,4 +1,4 @@
-package com.asm.managment.Dao.Implemention;
+package com.asm.managment.Dao.Impl;
 
 import com.asm.managment.Dao.Interface.SupplierDao;
 import com.asm.managment.Model.Supplier;
