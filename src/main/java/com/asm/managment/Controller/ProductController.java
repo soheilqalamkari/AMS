@@ -1,6 +1,5 @@
 package com.asm.managment.Controller;
 
-import com.asm.managment.Dao.Interface.ProductDao;
 import com.asm.managment.Model.Product;
 import com.asm.managment.Service.Interface.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
