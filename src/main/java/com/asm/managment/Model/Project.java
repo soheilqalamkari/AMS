@@ -55,7 +55,7 @@ public class Project implements Serializable{
     }
 
     @ManyToMany
-    //@JoinTable(name = "PRODUCT_IN_PROJECT",joinColumns = @JoinColumn(name = "PROJECT_ID"),inverseJoinColumns = @JoinColumn(name = "PRODUCT_ID"))
+    @JoinTable(name = "PRODUCT_IN_PROJECT",joinColumns = @JoinColumn(name = "PROJECT_ID"),inverseJoinColumns = @JoinColumn(name = "PRODUCT_ID"))
     public Set<Product> getProductSet() {
         return productSet;
     }

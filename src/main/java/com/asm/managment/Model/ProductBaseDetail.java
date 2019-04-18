@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Table(name = "PRODUCT_BASE_DETAILS",catalog = "ASM",schema = "system")
 public class ProductBaseDetail implements Serializable {
 
-    //private Long baseDetailId;
+    private Long baseDetailId;
     private Long serialNo;
     private String modelNo;
     private String partNo;
@@ -32,11 +32,23 @@ public class ProductBaseDetail implements Serializable {
         super();
     }
 
-    public ProductBaseDetail(Long serialNo, String modelNo, String partNo, Product product) {
+    public ProductBaseDetail(Long baseDetailId, Long serialNo, String modelNo, String partNo, Product product) {
+        this.baseDetailId = baseDetailId;
         this.serialNo = serialNo;
         this.modelNo = modelNo;
         this.partNo = partNo;
         this.product = product;
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "PRODUCT_BASE_DETAIL_ID")
+    public Long getBaseDetailId() {
+        return baseDetailId;
+    }
+
+    public void setBaseDetailId(Long baseDetailId) {
+        this.baseDetailId = baseDetailId;
     }
 
     @Id
