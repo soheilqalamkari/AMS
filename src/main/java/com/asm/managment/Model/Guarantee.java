@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+
 @Entity
 @Table(name = "GUARANTEES",catalog = "ASM",schema = "system")
 public class Guarantee implements Serializable {
@@ -58,7 +59,7 @@ public class Guarantee implements Serializable {
         this.during = during;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     public Product getProduct() {
         return product;
     }

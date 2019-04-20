@@ -4,7 +4,18 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
+
+/**
+ * We use @NamedEntityGraph to specifying the attributes to include when we want to load the entity and the related associations.
+ * Product is my NamedEntityGraph to load it and it's related Entities such as ProductBaseDetails,Guarantee.
+ * We use @NamedAttributeNode to define the related entities to be loaded when the root entity is loaded.
+ */
+@NamedEntityGraph(name = "product-entity-graph",attributeNodes = {
+        @NamedAttributeNode("guaranteeList"),
+        @NamedAttributeNode("productBaseDetailList")
+} )
 @Entity(name = "Product")
 @Table(name = "PRODUCTS",catalog = "ASM",schema = "system")
 public class Product implements Serializable {
@@ -13,14 +24,14 @@ public class Product implements Serializable {
     private String name;
     private String health;
     private Date buyDate;
-    private List<Guarantee> guaranteeList;
-    private List<ProductBaseDetail> productBaseDetailList;
+    private Set<Guarantee> guaranteeList;
+    private Set<ProductBaseDetail> productBaseDetailList;
 
     public Product() {
         super();
     }
 
-    public Product(Long productId, String name, String health, Date buyDate, List<Guarantee> guaranteeList, List<ProductBaseDetail> productBaseDetailList) {
+    public Product(Long productId, String name, String health, Date buyDate, Set<Guarantee> guaranteeList, Set<ProductBaseDetail> productBaseDetailList) {
         this.productId = productId;
         this.name = name;
         this.health = health;
@@ -67,21 +78,21 @@ public class Product implements Serializable {
         this.health = health;
     }
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "product",fetch = FetchType.LAZY)
-    public List<Guarantee> getGuaranteeList() {
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "product")
+    public Set<Guarantee> getGuaranteeList() {
         return guaranteeList;
     }
 
-    public void setGuaranteeList(List<Guarantee> guaranteeList) {
+    public void setGuaranteeList(Set<Guarantee> guaranteeList) {
         this.guaranteeList = guaranteeList;
     }
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "product",fetch = FetchType.LAZY)
-    public List<ProductBaseDetail> getProductBaseDetailList() {
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "product")
+    public Set<ProductBaseDetail> getProductBaseDetailList() {
         return productBaseDetailList;
     }
 
-    public void setProductBaseDetailList(List<ProductBaseDetail> productBaseDetailList) {
+    public void setProductBaseDetailList(Set<ProductBaseDetail> productBaseDetailList) {
         this.productBaseDetailList = productBaseDetailList;
     }
 }

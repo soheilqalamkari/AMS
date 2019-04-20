@@ -80,7 +80,7 @@ public class ProductBaseDetail implements Serializable {
         this.partNo = partNo;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     public Product getProduct() {
         return product;
     }
