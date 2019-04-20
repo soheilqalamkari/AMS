@@ -15,17 +15,7 @@ public class ProductBaseDetail implements Serializable {
     private String partNo;
     @JsonIgnore
     private Product product;
-
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(name = "PRODUCT_BASE_DETAIL_ID")
-//    public Long getBaseDetailId() {
-//        return baseDetailId;
-//    }
-//
-//    public void setBaseDetailId(Long baseDetailId) {
-//        this.baseDetailId = baseDetailId;
-//    }
+    private Long productId;
 
 
     public ProductBaseDetail() {
@@ -87,5 +77,14 @@ public class ProductBaseDetail implements Serializable {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    @Transient
+    public Long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 }

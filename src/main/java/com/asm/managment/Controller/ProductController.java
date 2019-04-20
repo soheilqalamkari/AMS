@@ -1,6 +1,8 @@
 package com.asm.managment.Controller;
 
 import com.asm.managment.Model.Product;
+import com.asm.managment.Model.ProductBaseDetail;
+import com.asm.managment.Service.Interface.ProductBaseDetailService;
 import com.asm.managment.Service.Interface.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +18,9 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private ProductBaseDetailService productBaseDetailService;
 
     @GetMapping(value = "/api/v1.0/all",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Product>> all(){
@@ -50,6 +55,13 @@ public class ProductController {
     @DeleteMapping(value = "/api/v1.0/delete")
     public ResponseEntity<Product> deleteAllProducts(){
         productService.deleteAllProducts();
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
+    @PostMapping(value = "/api/v1.0/setBaseDetail",consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ProductBaseDetail> saveBaseProductDetail(@RequestBody ProductBaseDetail productBaseDetail){
+        productBaseDetailService.saveProductBaseDetail(productBaseDetail);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

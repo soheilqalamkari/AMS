@@ -2,6 +2,8 @@ package com.asm.managment.Dao.Impl;
 
 import com.asm.managment.Dao.Interface.GuaranteeDao;
 import com.asm.managment.Model.Guarantee;
+import com.asm.managment.Service.Interface.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -17,9 +19,14 @@ public class GuaranteeImpl implements GuaranteeDao {
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Autowired
+    private ProductService productService;
+
 
     @Override
     public void save(Guarantee guarantee) {
+
+        guarantee.setProduct(productService.findProductById(guarantee.getProductId()));
         entityManager.persist(guarantee);
     }
 

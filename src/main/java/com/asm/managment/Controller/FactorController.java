@@ -23,7 +23,7 @@ public class FactorController {
         return new ResponseEntity<>(factorList, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/Factor/api/v1.0/{factorId}")
+    @GetMapping(value = "/Factor/api/v1.0/find/{factorId}")
     public ResponseEntity<Factor> findById(@PathVariable Long factorId){
         return new ResponseEntity<>(factorService.findFactorById(factorId),HttpStatus.OK);
     }

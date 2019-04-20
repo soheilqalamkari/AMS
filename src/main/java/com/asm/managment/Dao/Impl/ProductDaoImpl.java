@@ -4,14 +4,9 @@ import com.asm.managment.Dao.Interface.ProductDao;
 import com.asm.managment.Model.Product;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityGraph;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.*;
 import javax.transaction.Transactional;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Repository
 @Transactional
@@ -29,11 +24,11 @@ public class ProductDaoImpl implements ProductDao {
     @org.springframework.data.jpa.repository.EntityGraph(value = "product-entity-graph",type = org.springframework.data.jpa.repository.EntityGraph.EntityGraphType.LOAD)
     public Product findProductById(Long productId) {
 
-        EntityGraph entityGraph = entityManager.getEntityGraph("product-entity-graph");
-        Product product = entityManager.createQuery("select p from Product p where p.productId = :id", Product.class)
-                .setParameter("id", productId)
-                .setHint("javax.persistence.fetchgraph", entityGraph)
-                .getSingleResult();
+            javax.persistence.EntityGraph entityGraph = entityManager.getEntityGraph("product-entity-graph");
+           Product product = entityManager.createQuery("select p from Product p where p.productId = :id", Product.class)
+                    .setParameter("id", productId)
+                    .setHint("javax.persistence.fetchgraph", entityGraph)
+                    .getResultList().stream().findFirst().orElse(null);
         return product;
 //        EntityGraph entityGraph = entityManager.getEntityGraph("product-entity-graph");
 //        Map<String,Object> properites = new HashMap<>();
