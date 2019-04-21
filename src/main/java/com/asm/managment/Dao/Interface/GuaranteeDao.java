@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface GuaranteeDao {
 
-    void save(Guarantee guarantee);
+    void save(List<Guarantee> guarantee);
     Guarantee findById(Long guaranteeId);
     List<Guarantee> findAll();
     void update(Guarantee guarantee);

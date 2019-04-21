@@ -8,7 +8,7 @@ import java.util.Date;
 
 
 @Entity
-@Table(name = "GUARANTEES",catalog = "ASM",schema = "system")
+@Table(name = "GUARANTEES",catalog = "ASM",schema = "test")
 public class Guarantee implements Serializable {
 
 

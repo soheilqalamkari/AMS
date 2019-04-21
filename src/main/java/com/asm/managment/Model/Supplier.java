@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "SUPPLIERS",catalog = "ASM",schema = "system")
+@Table(name = "SUPPLIERS",catalog = "ASM",schema = "test")
 public class Supplier implements Serializable{
 
     private Long supplierId;

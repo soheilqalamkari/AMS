@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface GuaranteeService {
 
-    void saveGuarantee(Guarantee guarantee);
+    void saveGuarantee(List<Guarantee> guarantee);
     Guarantee findGuaranteeById(Long guaranteeId);
     List<Guarantee> findAllGuarantees();
     void updateGuarantee(Guarantee guarantee);

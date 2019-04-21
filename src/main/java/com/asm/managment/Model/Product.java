@@ -17,7 +17,7 @@ import java.util.Set;
         @NamedAttributeNode("productBaseDetailList")
 } )
 @Entity(name = "Product")
-@Table(name = "PRODUCTS",catalog = "ASM",schema = "system")
+@Table(name = "PRODUCTS",catalog = "ASM",schema = "test")
 public class Product implements Serializable {
 
     private Long productId;
@@ -26,18 +26,20 @@ public class Product implements Serializable {
     private Date buyDate;
     private Set<Guarantee> guaranteeList;
     private Set<ProductBaseDetail> productBaseDetailList;
+    private Set<Project> projectSet;
 
     public Product() {
         super();
     }
 
-    public Product(Long productId, String name, String health, Date buyDate, Set<Guarantee> guaranteeList, Set<ProductBaseDetail> productBaseDetailList) {
+    public Product(Long productId, String name, String health, Date buyDate, Set<Guarantee> guaranteeList, Set<ProductBaseDetail> productBaseDetailList, Set<Project> projectSet) {
         this.productId = productId;
         this.name = name;
         this.health = health;
         this.buyDate = buyDate;
         this.guaranteeList = guaranteeList;
         this.productBaseDetailList = productBaseDetailList;
+        this.projectSet = projectSet;
     }
 
     @Id
@@ -94,5 +96,15 @@ public class Product implements Serializable {
 
     public void setProductBaseDetailList(Set<ProductBaseDetail> productBaseDetailList) {
         this.productBaseDetailList = productBaseDetailList;
+    }
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "PRODUCT_IN_PROJECT",joinColumns = @JoinColumn(name = "PROJECT_ID"),inverseJoinColumns = @JoinColumn(name = "PRODUCT_ID"))
+    public Set<Project> getProjectSet() {
+        return projectSet;
+    }
+
+    public void setProjectSet(Set<Project> projectSet) {
+        this.projectSet = projectSet;
     }
 }

@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table(name = "PROJECTS",catalog = "ASM",schema = "system")
+@Table(name = "PROJECTS",catalog = "ASM",schema = "test")
 public class Project implements Serializable{
 
     private Long projectId;
@@ -54,8 +54,8 @@ public class Project implements Serializable{
         this.endDate = endDate;
     }
 
-    @ManyToMany
-    @JoinTable(name = "PRODUCT_IN_PROJECT",joinColumns = @JoinColumn(name = "PROJECT_ID"),inverseJoinColumns = @JoinColumn(name = "PRODUCT_ID"))
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "PRODUCT_IN_PROJECT",joinColumns = @JoinColumn(name = "PRODUCT_ID"),inverseJoinColumns = @JoinColumn(name = "PROJECT_ID"))
     public Set<Product> getProductSet() {
         return productSet;
     }

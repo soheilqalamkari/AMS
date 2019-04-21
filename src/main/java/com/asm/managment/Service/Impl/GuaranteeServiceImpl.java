@@ -15,7 +15,8 @@ public class GuaranteeServiceImpl implements GuaranteeService {
     private GuaranteeDao guaranteeDao;
 
     @Override
-    public void saveGuarantee(Guarantee guarantee) {
+    public void saveGuarantee(List<Guarantee> guarantee)
+    {
         guaranteeDao.save(guarantee);
     }
 

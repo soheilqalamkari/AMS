@@ -24,10 +24,13 @@ public class GuaranteeImpl implements GuaranteeDao {
 
 
     @Override
-    public void save(Guarantee guarantee) {
+    public void save(List<Guarantee> guarantee) {
 
-        guarantee.setProduct(productService.findProductById(guarantee.getProductId()));
-        entityManager.persist(guarantee);
+        for (Guarantee guarantee1 : guarantee) {
+            guarantee1.setProduct(productService.findProductById(guarantee1.getProductId()));
+            entityManager.persist(guarantee1);
+        }
+
     }
 
     @Override

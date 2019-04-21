@@ -31,7 +31,7 @@ public class GuaranteeController {
     }
 
     @PostMapping(value = "/api/v1.0/save",consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Guarantee> saveGuarantee(@RequestBody Guarantee guarantee){
+    public ResponseEntity<List<Guarantee>> saveGuarantee(@RequestBody List<Guarantee> guarantee){
         guaranteeService.saveGuarantee(guarantee);
         return new ResponseEntity<>(HttpStatus.OK);
     }

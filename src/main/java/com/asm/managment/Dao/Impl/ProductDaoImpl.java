@@ -39,15 +39,14 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
+    @org.springframework.data.jpa.repository.EntityGraph
     public List<Product> findProducts() {
 
-        //Query query = entityManager.createQuery("SELECT p FROM  Product p join p.productBaseDetailList d where p.id=:id")
-//        Query query = entityManager.createQuery("select p from Product p");
-//        query.getResultList();
-//        return query.getResultList();
-
-        Query query = entityManager.createQuery("select p from Product p");
-        return query.getResultList();
+        EntityGraph entityGraph = entityManager.getEntityGraph("product-entity-graph");
+        List<Product> productList =  entityManager.createQuery("select p from Product p",Product.class)
+                .setHint("javax.persistence.fetchgraph",entityGraph)
+                .getResultList();
+        return productList;
     }
 
     @Override

@@ -1,15 +1,15 @@
 package com.asm.managment.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "PRODUCT_BASE_DETAILS",catalog = "ASM",schema = "system")
+@Table(name = "PRODUCT_BASE_DETAILS",catalog = "ASM",schema = "test")
 public class ProductBaseDetail implements Serializable {
 
-    private Long baseDetailId;
     private Long serialNo;
     private String modelNo;
     private String partNo;
@@ -22,24 +22,15 @@ public class ProductBaseDetail implements Serializable {
         super();
     }
 
-    public ProductBaseDetail(Long baseDetailId, Long serialNo, String modelNo, String partNo, Product product) {
-        this.baseDetailId = baseDetailId;
+    public ProductBaseDetail(Long serialNo, String modelNo, String partNo, Product product, Long productId) {
         this.serialNo = serialNo;
         this.modelNo = modelNo;
         this.partNo = partNo;
         this.product = product;
+        this.productId = productId;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "PRODUCT_BASE_DETAIL_ID")
-    public Long getBaseDetailId() {
-        return baseDetailId;
-    }
 
-    public void setBaseDetailId(Long baseDetailId) {
-        this.baseDetailId = baseDetailId;
-    }
 
     @Id
     @Column(name = "PRODUCT_SERIAL_NO")
@@ -60,6 +51,26 @@ public class ProductBaseDetail implements Serializable {
     public void setModelNo(String modelNo) {
         this.modelNo = modelNo;
     }
+
+    //    @Id
+//    @Column(name = "PRODUCT_SERIAL_NO")
+//    public Long getSerialNo() {
+//        return serialNo;
+//    }
+//
+//    public void setSerialNo(Long serialNo) {
+//        this.serialNo = serialNo;
+//    }
+//
+//    @Id
+//    @Column(name = "PRODUCT_MODEL_NO",length = 225)
+//    public String getModelNo() {
+//        return modelNo;
+//    }
+//
+//    public void setModelNo(String modelNo) {
+//        this.modelNo = modelNo;
+//    }
 
     @Column(name = "PRODUCT_PART_NO",length = 225)
     public String getPartNo() {

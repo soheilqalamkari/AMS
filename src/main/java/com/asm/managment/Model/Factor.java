@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "FACTORS",catalog = "ASM",schema = "system")
+@Table(name = "FACTORS",catalog = "ASM",schema = "test")
 public class Factor implements Serializable {
 
     private Long factorId;
