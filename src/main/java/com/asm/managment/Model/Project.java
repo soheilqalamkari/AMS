@@ -54,8 +54,8 @@ public class Project implements Serializable{
         this.endDate = endDate;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "PRODUCT_IN_PROJECT",joinColumns = @JoinColumn(name = "PRODUCT_ID"),inverseJoinColumns = @JoinColumn(name = "PROJECT_ID"))
+    @ManyToMany(cascade = CascadeType.ALL,mappedBy = "projectSet")
+   // @JoinTable(name = "PRODUCT_IN_PROJECT",joinColumns = @JoinColumn(name = "PRODUCT_ID"),inverseJoinColumns = @JoinColumn(name = "PROJECT_ID"))
     public Set<Product> getProductSet() {
         return productSet;
     }

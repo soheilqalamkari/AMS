@@ -24,8 +24,18 @@ public class SupplierServiceImpl implements SupplierService {
     }
 
     @Override
-    public Supplier findSupplerByPhoneNumber(Long supplerPhoneNumber) {
-        return supplierDao.findByPhoneNumber(supplerPhoneNumber);
+    public Supplier findByName(String supplierName) {
+        return supplierDao.findByName(supplierName);
+    }
+
+    @Override
+    public Supplier findByPhone(Long supplierPhone) {
+        return supplierDao.findByPhone(supplierPhone);
+    }
+
+    @Override
+    public Supplier findByNameAndPhone(String supplierName, Long supplierPhone) {
+        return supplierDao.findByNameAndPhone(supplierName,supplierPhone);
     }
 
     @Override

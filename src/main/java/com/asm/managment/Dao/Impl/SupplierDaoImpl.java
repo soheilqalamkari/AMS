@@ -25,8 +25,30 @@ public class SupplierDaoImpl implements SupplierDao {
     }
 
     @Override
-    public Supplier findByPhoneNumber(Long supplierPhoneNumber) {
-        return entityManager.find(Supplier.class,supplierPhoneNumber);
+    public Supplier findByName(String supplierName) {
+
+        Supplier supplier = entityManager.createQuery("select s from Supplier s where s.name=:supplierName",Supplier.class)
+                .setParameter("supplierName",supplierName)
+                .getResultList().stream().findFirst().orElse(null);
+        return supplier;
+    }
+
+    @Override
+    public Supplier findByPhone(Long supplierPhone) {
+        Supplier supplier = entityManager.createQuery("select s from Supplier s where s.phone=:supplierPhone",Supplier.class)
+                .setParameter("supplierPhone",supplierPhone)
+                .getResultList().stream().findFirst().orElse(null);
+        return supplier;
+    }
+
+    @Override
+    public Supplier findByNameAndPhone(String supplierName, Long supplierPhone) {
+
+        Supplier supplier = entityManager.createQuery("select s from Supplier s where s.name=:supplierName AND s.phone=:supplierPhone",Supplier.class)
+                .setParameter("supplierName",supplierName)
+                .setParameter("supplierPhone",supplierPhone)
+                .getResultList().stream().findFirst().orElse(null);
+        return supplier;
     }
 
     @Override
