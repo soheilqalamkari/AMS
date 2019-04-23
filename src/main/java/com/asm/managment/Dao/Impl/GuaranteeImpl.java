@@ -39,9 +39,32 @@ public class GuaranteeImpl implements GuaranteeDao {
     }
 
     @Override
-    public List<Guarantee> findAll() {
-        Query query = entityManager.createQuery("SELECT g FROM Guarantee g",Guarantee.class);
+    public List<Guarantee> findAllOrderByDuring() {
+        Query query = entityManager.createQuery("SELECT g FROM Guarantee g order by g.during desc ",Guarantee.class);
        return query.getResultList();
+    }
+
+    @Override
+    public List<Guarantee> findByDuring(Integer during) {
+        Query query = entityManager.createQuery("select g from Guarantee g where g.during=:duringTime",Guarantee.class)
+                .setParameter("duringTime",during);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Guarantee> findByNameAndDuring(String guaranteeName, Integer duringTime) {
+
+        Query query = entityManager.createQuery("select g from Guarantee g where g.name=:guaranteeName and g.during=:duringTime",Guarantee.class)
+                .setParameter("guaranteeName",guaranteeName)
+                .setParameter("duringTime",duringTime);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Guarantee> findAllByNameOrderByDuring(String guaranteeName) {
+        Query query = entityManager.createQuery("select g from Guarantee g where g.name=:guaranteeName order by g.during desc",Guarantee.class)
+                .setParameter("guaranteeName",guaranteeName);
+        return query.getResultList();
     }
 
     @Override

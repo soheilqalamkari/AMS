@@ -21,7 +21,7 @@ public class GuaranteeController {
     @GetMapping(value = "/api/v1.0/all",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Guarantee>> showAll(){
         List<Guarantee> guaranteeList;
-        guaranteeList = guaranteeService.findAllGuarantees();
+        guaranteeList = guaranteeService.findAllGuaranteesOrderByDuring();
         return new ResponseEntity<>(guaranteeList,HttpStatus.OK);
     }
 

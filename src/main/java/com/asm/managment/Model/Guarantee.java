@@ -15,11 +15,24 @@ public class Guarantee implements Serializable {
     private Long guaranteeId;
     private String name;
     private String details;
-    private Date during;
+    private Integer during;
     @JsonIgnore
     private Product product;
     private Long productId;
 
+
+    public Guarantee() {
+        super();
+    }
+
+    public Guarantee(Long guaranteeId, String name, String details, Integer during, Product product, Long productId) {
+        this.guaranteeId = guaranteeId;
+        this.name = name;
+        this.details = details;
+        this.during = during;
+        this.product = product;
+        this.productId = productId;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,15 +64,15 @@ public class Guarantee implements Serializable {
     }
 
     @Column(name = "GUARANTEE_DURING")
-    public Date getDuring() {
+    public Integer getDuring() {
         return during;
     }
 
-    public void setDuring(Date during) {
+    public void setDuring(Integer during) {
         this.during = during;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     public Product getProduct() {
         return product;
     }

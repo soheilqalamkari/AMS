@@ -21,13 +21,28 @@ public class GuaranteeServiceImpl implements GuaranteeService {
     }
 
     @Override
+    public List<Guarantee> findByDuring(Integer during) {
+        return guaranteeDao.findByDuring(during);
+    }
+
+    @Override
+    public List<Guarantee> findAllByNameOrderByDuring(String guaranteeName) {
+        return guaranteeDao.findAllByNameOrderByDuring(guaranteeName);
+    }
+
+    @Override
+    public List<Guarantee> findByNameAndDuring(String guaranteeName, Integer duringTime) {
+        return guaranteeDao.findByNameAndDuring(guaranteeName, duringTime);
+    }
+
+    @Override
     public Guarantee findGuaranteeById(Long guaranteeId) {
         return guaranteeDao.findById(guaranteeId);
     }
 
     @Override
-    public List<Guarantee> findAllGuarantees() {
-        return guaranteeDao.findAll();
+    public List<Guarantee> findAllGuaranteesOrderByDuring() {
+        return guaranteeDao.findAllOrderByDuring();
     }
 
     @Override

@@ -8,7 +8,10 @@ public interface GuaranteeService {
 
     void saveGuarantee(List<Guarantee> guarantee);
     Guarantee findGuaranteeById(Long guaranteeId);
-    List<Guarantee> findAllGuarantees();
+    List<Guarantee> findAllGuaranteesOrderByDuring();
+    List<Guarantee> findByDuring(Integer during);
+    List<Guarantee> findAllByNameOrderByDuring(String guaranteeName);
+    List<Guarantee> findByNameAndDuring(String guaranteeName, Integer duringTime);
     void updateGuarantee(Guarantee guarantee);
     void deleteGuarantee(Long guaranteeId);
     void deleteAllGuarantees();

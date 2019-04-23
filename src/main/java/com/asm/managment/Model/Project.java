@@ -4,6 +4,7 @@ package com.asm.managment.Model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -14,7 +15,7 @@ public class Project implements Serializable{
     private String name;
     private Date beginDate;
     private Date endDate;
-    private Set<Product> productSet;
+    private List<Product> productList;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,13 +55,12 @@ public class Project implements Serializable{
         this.endDate = endDate;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL,mappedBy = "projectSet")
-   // @JoinTable(name = "PRODUCT_IN_PROJECT",joinColumns = @JoinColumn(name = "PRODUCT_ID"),inverseJoinColumns = @JoinColumn(name = "PROJECT_ID"))
-    public Set<Product> getProductSet() {
-        return productSet;
+    @ManyToMany
+    public List<Product> getProductList() {
+        return productList;
     }
 
-    public void setProductSet(Set<Product> productSet) {
-        this.productSet = productSet;
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
     }
 }

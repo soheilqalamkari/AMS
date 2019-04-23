@@ -26,20 +26,20 @@ public class Product implements Serializable {
     private Date buyDate;
     private Set<Guarantee> guaranteeList;
     private Set<ProductBaseDetail> productBaseDetailList;
-    private Set<Project> projectSet;
+    private List<Project> projectList;
 
     public Product() {
         super();
     }
 
-    public Product(Long productId, String name, String health, Date buyDate, Set<Guarantee> guaranteeList, Set<ProductBaseDetail> productBaseDetailList, Set<Project> projectSet) {
+    public Product(Long productId, String name, String health, Date buyDate, Set<Guarantee> guaranteeList, Set<ProductBaseDetail> productBaseDetailList, List<Project> projectList) {
         this.productId = productId;
         this.name = name;
         this.health = health;
         this.buyDate = buyDate;
         this.guaranteeList = guaranteeList;
         this.productBaseDetailList = productBaseDetailList;
-        this.projectSet = projectSet;
+        this.projectList = projectList;
     }
 
     @Id
@@ -98,13 +98,12 @@ public class Product implements Serializable {
         this.productBaseDetailList = productBaseDetailList;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "PRODUCT_IN_PROJECT",joinColumns = @JoinColumn(name = "PROJECT_ID"),inverseJoinColumns = @JoinColumn(name = "PRODUCT_ID"))
-    public Set<Project> getProjectSet() {
-        return projectSet;
+    @ManyToMany(cascade = CascadeType.ALL,mappedBy = "productList")
+    public List<Project> getProjectList() {
+        return projectList;
     }
 
-    public void setProjectSet(Set<Project> projectSet) {
-        this.projectSet = projectSet;
+    public void setProjectList(List<Project> projectList) {
+        this.projectList = projectList;
     }
 }
