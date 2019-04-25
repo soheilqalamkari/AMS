@@ -14,7 +14,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class GuaranteeImpl implements GuaranteeDao {
+public class GuaranteeDaoImpl implements GuaranteeDao {
 
     @PersistenceContext
     private EntityManager entityManager;

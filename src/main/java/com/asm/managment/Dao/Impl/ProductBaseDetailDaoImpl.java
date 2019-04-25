@@ -14,7 +14,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class ProductBaseDetailImpl implements ProductBaseDetailDao {
+public class ProductBaseDetailDaoImpl implements ProductBaseDetailDao {
 
     @PersistenceContext
     private EntityManager entityManager;

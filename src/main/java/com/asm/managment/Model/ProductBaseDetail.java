@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 @Table(name = "PRODUCT_BASE_DETAILS",catalog = "ASM",schema = "test")
@@ -97,5 +98,23 @@ public class ProductBaseDetail implements Serializable {
 
     public void setProductId(Long productId) {
         this.productId = productId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProductBaseDetail that = (ProductBaseDetail) o;
+        return Objects.equals(serialNo, that.serialNo) &&
+                Objects.equals(modelNo, that.modelNo) &&
+                Objects.equals(partNo, that.partNo) &&
+                Objects.equals(product, that.product) &&
+                Objects.equals(productId, that.productId);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(serialNo, modelNo, partNo, product, productId);
     }
 }

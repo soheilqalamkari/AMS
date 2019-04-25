@@ -15,7 +15,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class FactorImpl implements FactorDao {
+public class FactorDaoImpl implements FactorDao {
 
     @PersistenceContext
     private EntityManager entityManager;

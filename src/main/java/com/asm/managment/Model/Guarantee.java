@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 
 @Entity
@@ -88,5 +89,24 @@ public class Guarantee implements Serializable {
 
     public void setProductId(Long productId) {
         this.productId = productId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Guarantee guarantee = (Guarantee) o;
+        return Objects.equals(guaranteeId, guarantee.guaranteeId) &&
+                Objects.equals(name, guarantee.name) &&
+                Objects.equals(details, guarantee.details) &&
+                Objects.equals(during, guarantee.during) &&
+                Objects.equals(product, guarantee.product) &&
+                Objects.equals(productId, guarantee.productId);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(guaranteeId, name, details, during, product, productId);
     }
 }

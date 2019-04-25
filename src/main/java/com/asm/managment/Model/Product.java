@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 
@@ -105,5 +106,25 @@ public class Product implements Serializable {
 
     public void setProjectList(List<Project> projectList) {
         this.projectList = projectList;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Objects.equals(productId, product.productId) &&
+                Objects.equals(name, product.name) &&
+                Objects.equals(health, product.health) &&
+                Objects.equals(buyDate, product.buyDate) &&
+                Objects.equals(guaranteeList, product.guaranteeList) &&
+                Objects.equals(productBaseDetailList, product.productBaseDetailList) &&
+                Objects.equals(projectList, product.projectList);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(productId, name, health, buyDate, guaranteeList, productBaseDetailList, projectList);
     }
 }
