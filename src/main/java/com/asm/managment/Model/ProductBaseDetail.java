@@ -43,7 +43,6 @@ public class ProductBaseDetail implements Serializable {
         this.serialNo = serialNo;
     }
 
-    @Id
     @Column(name = "PRODUCT_MODEL_NO",length = 225)
     public String getModelNo() {
         return modelNo;
@@ -100,21 +99,5 @@ public class ProductBaseDetail implements Serializable {
         this.productId = productId;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ProductBaseDetail that = (ProductBaseDetail) o;
-        return Objects.equals(serialNo, that.serialNo) &&
-                Objects.equals(modelNo, that.modelNo) &&
-                Objects.equals(partNo, that.partNo) &&
-                Objects.equals(product, that.product) &&
-                Objects.equals(productId, that.productId);
-    }
 
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(serialNo, modelNo, partNo, product, productId);
-    }
 }

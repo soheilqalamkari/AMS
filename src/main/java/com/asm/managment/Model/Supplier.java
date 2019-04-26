@@ -7,22 +7,24 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "SUPPLIERS",catalog = "ASM",schema = "test")
-public class Supplier implements Serializable{
+public class Supplier implements Serializable {
 
     private Long supplierId;
     private String name;
     private Long phone;
     private List<Factor> FactorList;
+    private List<Product> productList;
 
     public Supplier() {
         super();
     }
 
-    public Supplier(Long supplierId, String name, Long phone, List<Factor> factorList) {
+    public Supplier(Long supplierId, String name, Long phone, List<Factor> factorList, List<Product> productList) {
         this.supplierId = supplierId;
         this.name = name;
         this.phone = phone;
         FactorList = factorList;
+        this.productList = productList;
     }
 
     @Id
@@ -54,7 +56,7 @@ public class Supplier implements Serializable{
         this.phone = phone;
     }
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "supplier",fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "supplier", fetch = FetchType.LAZY)
     public List<Factor> getFactorList() {
         return FactorList;
     }
@@ -63,19 +65,16 @@ public class Supplier implements Serializable{
         FactorList = factorList;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Supplier supplier = (Supplier) o;
-        return Objects.equals(supplierId, supplier.supplierId) &&
-                Objects.equals(name, supplier.name) &&
-                Objects.equals(phone, supplier.phone) &&
-                Objects.equals(FactorList, supplier.FactorList);
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "supplier",fetch = FetchType.LAZY)
+    public List<Product> getProductList() {
+        return productList;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(supplierId, name, phone, FactorList);
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
     }
+
+
+
 }

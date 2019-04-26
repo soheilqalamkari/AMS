@@ -42,6 +42,11 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
+    public List<Project> findAll() {
+        return projectDao.findAll();
+    }
+
+    @Override
     public List<Project> findAllOrderByBeginDate() {
         return projectDao.findAllOrderByBeginDate();
     }

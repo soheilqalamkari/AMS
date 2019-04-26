@@ -67,6 +67,16 @@ public class ProjectDaoImpl implements ProjectDao {
     }
 
     @Override
+    public List<Project> findAll() {
+        try {
+            Query query = entityManager.createQuery("select p from Project p",Project.class);
+          return query.getResultList();
+        }catch (NoResultException e){
+            return null;
+        }
+    }
+
+    @Override
     public List<Project> findAllOrderByBeginDate() {
         try {
              Query query = entityManager.createQuery("select p from Project p order by p.beginDate desc",Project.class);
@@ -89,7 +99,7 @@ public class ProjectDaoImpl implements ProjectDao {
     @Override
     public Project findByName(String projectName) {
         try {
-            Project project = entityManager.createQuery("select p from Project p where p.projectName=:projectName", Project.class)
+            Project project = entityManager.createQuery("select p from Project p where p.name=:projectName", Project.class)
                     .setParameter("projectName", projectName)
                     .getSingleResult();
             return project;
@@ -123,7 +133,7 @@ public class ProjectDaoImpl implements ProjectDao {
     @Override
     public Project findByNameAndBeginDateAndEndDate(String projectName, Date beginDate, Date endDate) {
         try {
-            Project project = entityManager.createQuery("select p from Project p where p.projectName=:projectName and p.beginDate=:beginDate and p.endDate=:endDate", Project.class)
+            Project project = entityManager.createQuery("select p from Project p where p.name=:projectName and p.beginDate=:beginDate and p.endDate=:endDate", Project.class)
                     .setParameter("projectName", projectName)
                     .setParameter("beginDate",beginDate)
                     .setParameter("endDate",endDate)

@@ -65,21 +65,6 @@ public class Project implements Serializable{
         this.productList = productList;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Project project = (Project) o;
-        return Objects.equals(projectId, project.projectId) &&
-                Objects.equals(name, project.name) &&
-                Objects.equals(beginDate, project.beginDate) &&
-                Objects.equals(endDate, project.endDate) &&
-                Objects.equals(productList, project.productList);
-    }
 
-    @Override
-    public int hashCode() {
 
-        return Objects.hash(projectId, name, beginDate, endDate, productList);
-    }
 }

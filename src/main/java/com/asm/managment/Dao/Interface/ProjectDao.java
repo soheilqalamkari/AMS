@@ -13,6 +13,7 @@ public interface ProjectDao {
     void delete(Long projectId);
     void deleteAll();
     Project findById(Long projectId);
+    List<Project> findAll();
     List<Project> findAllOrderByBeginDate();
     List<Project> findAllOrderByEndDate();
     Project findByName(String projectName);

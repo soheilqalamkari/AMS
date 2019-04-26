@@ -17,6 +17,18 @@ public class Factor implements Serializable {
     private Supplier supplier;
     private Long supplierId;
 
+
+    public Factor() {
+        super();
+    }
+
+    public Factor(Long factorId, Date date, Supplier supplier, Long supplierId) {
+        this.factorId = factorId;
+        this.date = date;
+        this.supplier = supplier;
+        this.supplierId = supplierId;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "FACTOR_ID")
@@ -55,19 +67,5 @@ public class Factor implements Serializable {
         this.supplierId = supplierId;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Factor factor = (Factor) o;
-        return Objects.equals(factorId, factor.factorId) &&
-                Objects.equals(date, factor.date) &&
-                Objects.equals(supplier, factor.supplier);
-    }
 
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(factorId, date, supplier);
-    }
 }

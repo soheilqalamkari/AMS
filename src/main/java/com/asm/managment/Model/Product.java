@@ -1,5 +1,7 @@
 package com.asm.managment.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -15,7 +17,9 @@ import java.util.Set;
  */
 @NamedEntityGraph(name = "product-entity-graph",attributeNodes = {
         @NamedAttributeNode("guaranteeList"),
-        @NamedAttributeNode("productBaseDetailList")
+        @NamedAttributeNode("productBaseDetailList"),
+        @NamedAttributeNode("projectList"),
+        @NamedAttributeNode("supplier")
 } )
 @Entity(name = "Product")
 @Table(name = "PRODUCTS",catalog = "ASM",schema = "test")
@@ -27,13 +31,18 @@ public class Product implements Serializable {
     private Date buyDate;
     private Set<Guarantee> guaranteeList;
     private Set<ProductBaseDetail> productBaseDetailList;
-    private List<Project> projectList;
+    private Set<Project> projectList;
+    @JsonIgnore
+    private Supplier supplier;
+    private Long supplierId;
+
+
 
     public Product() {
         super();
     }
 
-    public Product(Long productId, String name, String health, Date buyDate, Set<Guarantee> guaranteeList, Set<ProductBaseDetail> productBaseDetailList, List<Project> projectList) {
+    public Product(Long productId, String name, String health, Date buyDate, Set<Guarantee> guaranteeList, Set<ProductBaseDetail> productBaseDetailList, Set<Project> projectList, Supplier supplier, Long supplierId) {
         this.productId = productId;
         this.name = name;
         this.health = health;
@@ -41,6 +50,8 @@ public class Product implements Serializable {
         this.guaranteeList = guaranteeList;
         this.productBaseDetailList = productBaseDetailList;
         this.projectList = projectList;
+        this.supplier = supplier;
+        this.supplierId = supplierId;
     }
 
     @Id
@@ -100,31 +111,32 @@ public class Product implements Serializable {
     }
 
     @ManyToMany(cascade = CascadeType.ALL,mappedBy = "productList")
-    public List<Project> getProjectList() {
+    public Set<Project> getProjectList() {
         return projectList;
     }
 
-    public void setProjectList(List<Project> projectList) {
+    public void setProjectList(Set<Project> projectList) {
         this.projectList = projectList;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return Objects.equals(productId, product.productId) &&
-                Objects.equals(name, product.name) &&
-                Objects.equals(health, product.health) &&
-                Objects.equals(buyDate, product.buyDate) &&
-                Objects.equals(guaranteeList, product.guaranteeList) &&
-                Objects.equals(productBaseDetailList, product.productBaseDetailList) &&
-                Objects.equals(projectList, product.projectList);
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    public Supplier getSupplier() {
+        return supplier;
     }
 
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(productId, name, health, buyDate, guaranteeList, productBaseDetailList, projectList);
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
     }
+
+
+    @Transient
+    public Long getSupplierId() {
+        return supplierId;
+    }
+
+    public void setSupplierId(Long supplierId) {
+        this.supplierId = supplierId;
+    }
+
+
 }

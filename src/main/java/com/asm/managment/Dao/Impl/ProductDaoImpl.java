@@ -39,7 +39,7 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    @org.springframework.data.jpa.repository.EntityGraph
+    @org.springframework.data.jpa.repository.EntityGraph(type = org.springframework.data.jpa.repository.EntityGraph.EntityGraphType.LOAD)
     public List<Product> findProducts() {
 
         EntityGraph entityGraph = entityManager.getEntityGraph("product-entity-graph");

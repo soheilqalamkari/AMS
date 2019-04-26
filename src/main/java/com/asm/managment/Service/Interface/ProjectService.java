@@ -5,12 +5,13 @@ import com.asm.managment.Model.Project;
 import java.util.Date;
 import java.util.List;
 
-public interface ProjectService {
+public interface  ProjectService {
     void save(Project project);
     void update(Project project);
     void delete(Long projectId);
     void deleteAll();
     Project findById(Long projectId);
+    List<Project> findAll();
     List<Project> findAllOrderByBeginDate();
     List<Project> findAllOrderByEndDate();
     Project findByName(String projectName);
