@@ -1,13 +1,11 @@
-package com.asm.managment.Dao.Interface;
+package com.asm.managment.Service.Interface;
 
 import com.asm.managment.Model.Project;
-
 
 import java.util.Date;
 import java.util.List;
 
-public interface ProjectDao {
-
+public interface ProjectService {
     void save(Project project);
     void update(Project project);
     void delete(Long projectId);

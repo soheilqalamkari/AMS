@@ -2,16 +2,8 @@ package com.asm.managment.Dao.Impl;
 
 import com.asm.managment.Dao.Interface.ProjectDao;
 import com.asm.managment.Model.Project;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
-
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceUnit;
-import javax.transaction.RollbackException;
+import javax.persistence.*;
 import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
@@ -47,47 +39,98 @@ public class ProjectDaoImpl implements ProjectDao {
     }
 
     @Override
-    public void delete(Long ProjectId) {
-
+    public void delete(Long projectId) {
+        try {
+            entityManager.remove(findById(projectId));
+        }catch (Exception e){
+            System.out.println(e.toString());
+        }
     }
 
     @Override
     public void deleteAll() {
-
+        try {
+            Query query = entityManager.createQuery("delete from Project");
+            query.executeUpdate();
+        }catch (Exception e){
+            System.out.println(e.toString());
+        }
     }
 
     @Override
     public Project findById(Long projectId) {
-        return null;
+        try {
+           return entityManager.find(Project.class, projectId);
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     @Override
     public List<Project> findAllOrderByBeginDate() {
-        return null;
+        try {
+             Query query = entityManager.createQuery("select p from Project p order by p.beginDate desc",Project.class);
+             return query.getResultList();
+        }catch (NoResultException e){
+            return null;
+        }
     }
 
     @Override
     public List<Project> findAllOrderByEndDate() {
-        return null;
+        try {
+            Query query = entityManager.createQuery("select p from Project p order by p.endDate desc",Project.class);
+            return query.getResultList();
+        }catch (NoResultException e){
+            return null;
+        }
     }
 
     @Override
     public Project findByName(String projectName) {
-        return null;
+        try {
+            Project project = entityManager.createQuery("select p from Project p where p.projectName=:projectName", Project.class)
+                    .setParameter("projectName", projectName)
+                    .getSingleResult();
+            return project;
+        }catch (NoResultException e){
+            return null;
+        }
     }
 
     @Override
     public List<Project> findByBeginDate(Date beginDate) {
-        return null;
+        try {
+            Query query = entityManager.createQuery("select p from Project p where p.beginDate=:beginDate",Project.class)
+                    .setParameter("beginDate",beginDate);
+            return query.getResultList();
+        }catch (NoResultException e){
+            return null;
+        }
     }
 
     @Override
-    public List<Project> findByEndDate(Date beginDate) {
-        return null;
+    public List<Project> findByEndDate(Date endDate) {
+        try {
+            Query query = entityManager.createQuery("select p from Project p where p.endDate=:endDate",Project.class)
+                    .setParameter("endDate",endDate);
+            return query.getResultList();
+        }catch (NoResultException e){
+            return null;
+        }
     }
 
     @Override
-    public Project findByNameAndBeginDateAndEndDate(String ProjectName, Date beginDate, Date endDate) {
-        return null;
+    public Project findByNameAndBeginDateAndEndDate(String projectName, Date beginDate, Date endDate) {
+        try {
+            Project project = entityManager.createQuery("select p from Project p where p.projectName=:projectName and p.beginDate=:beginDate and p.endDate=:endDate", Project.class)
+                    .setParameter("projectName", projectName)
+                    .setParameter("beginDate",beginDate)
+                    .setParameter("endDate",endDate)
+                    .getSingleResult();
+            return project;
+        }catch (NoResultException e){
+            return null;
+        }
     }
 }

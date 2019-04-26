@@ -60,8 +60,9 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public void delete(Long productId) {
-        entityManager.remove(productId);
+    public void delete(Long productId)
+    {
+        entityManager.remove(findProductById(productId));
     }
 
     @Override
