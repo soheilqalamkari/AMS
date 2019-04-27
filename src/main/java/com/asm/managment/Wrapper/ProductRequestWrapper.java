@@ -1,5 +1,6 @@
 package com.asm.managment.Wrapper;
 
+import com.asm.managment.Model.Factor;
 import com.asm.managment.Model.Guarantee;
 import com.asm.managment.Model.Product;
 import com.asm.managment.Model.ProductBaseDetail;
