@@ -77,8 +77,10 @@ public class ProjectDaoImpl implements ProjectDao {
     }
 
     @Override
+
     public List<Project> findAllOrderByBeginDate() {
         try {
+
              Query query = entityManager.createQuery("select p from Project p order by p.beginDate desc",Project.class);
              return query.getResultList();
         }catch (NoResultException e){

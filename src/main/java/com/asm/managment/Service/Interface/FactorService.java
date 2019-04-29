@@ -8,6 +8,7 @@ import java.util.List;
 public interface FactorService {
     void save(Factor factor);
     Factor findFactorById(Long factorId);
+    List<Factor> findFactorsBySupplier(Long supplierId);
     List<Factor> findFactors();
     List<Factor> findFactorsByDate(Date date);
     void updateFactor(Factor factor);

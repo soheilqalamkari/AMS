@@ -12,19 +12,18 @@ public class Supplier implements Serializable {
     private Long supplierId;
     private String name;
     private Long phone;
-    private List<Factor> FactorList;
-    private List<Product> productList;
+   // private List<Factor> FactorList;
+//    private List<Product> productList;
 
     public Supplier() {
         super();
     }
 
-    public Supplier(Long supplierId, String name, Long phone, List<Factor> factorList, List<Product> productList) {
+    public Supplier(Long supplierId, String name, Long phone) {
         this.supplierId = supplierId;
         this.name = name;
         this.phone = phone;
-        FactorList = factorList;
-        this.productList = productList;
+       // FactorList = factorList;
     }
 
     @Id
@@ -56,24 +55,24 @@ public class Supplier implements Serializable {
         this.phone = phone;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "supplier", fetch = FetchType.LAZY)
-    public List<Factor> getFactorList() {
-        return FactorList;
-    }
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "supplier", fetch = FetchType.LAZY)
+//    public List<Factor> getFactorList() {
+//        return FactorList;
+//    }
+//
+//    public void setFactorList(List<Factor> factorList) {
+//        FactorList = factorList;
+//    }
 
-    public void setFactorList(List<Factor> factorList) {
-        FactorList = factorList;
-    }
 
-
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "supplier",fetch = FetchType.LAZY)
-    public List<Product> getProductList() {
-        return productList;
-    }
-
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
-    }
+//    @OneToMany(cascade = CascadeType.ALL,mappedBy = "supplier",fetch = FetchType.LAZY)
+//    public List<Product> getProductList() {
+//        return productList;
+//    }
+//
+//    public void setProductList(List<Product> productList) {
+//        this.productList = productList;
+//    }
 
 
 

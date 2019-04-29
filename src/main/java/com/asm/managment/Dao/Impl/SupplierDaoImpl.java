@@ -52,7 +52,6 @@ public class SupplierDaoImpl implements SupplierDao {
     }
 
     @Override
-    @SuppressWarnings("Unchecked assignment")
     public List<Supplier> findAll() {
        Query query = entityManager.createQuery(" select s from Supplier s ",Supplier.class);
        return query.getResultList();

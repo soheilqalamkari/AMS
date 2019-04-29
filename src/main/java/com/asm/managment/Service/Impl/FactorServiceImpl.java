@@ -26,6 +26,11 @@ public class FactorServiceImpl implements FactorService {
     }
 
     @Override
+    public List<Factor> findFactorsBySupplier(Long supplierId) {
+        return factorDao.findFactorsBySupplier(supplierId);
+    }
+
+    @Override
     public List<Factor> findFactors() {
         return factorDao.findFactors();
     }

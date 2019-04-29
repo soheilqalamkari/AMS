@@ -11,6 +11,7 @@ public interface FactorDao {
     Factor findFactorById(Long factorId);
     List<Factor> findFactors();
     List<Factor> findFactorsByDate(Date date);
+    List<Factor> findFactorsBySupplier(Long supplierId);
     void update(Factor factor);
     void delete(Long factor);
     void deleteAll();
