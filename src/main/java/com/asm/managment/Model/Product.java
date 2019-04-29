@@ -15,12 +15,12 @@ import java.util.Set;
  * Product is my NamedEntityGraph to load it and it's related Entities such as ProductBaseDetails,Guarantee.
  * We use @NamedAttributeNode to define the related entities to be loaded when the root entity is loaded.
  */
-@NamedEntityGraph(name = "product-entity-graph",attributeNodes = {
-        @NamedAttributeNode("guaranteeList"),
-        @NamedAttributeNode("productBaseDetailList"),
-        @NamedAttributeNode("projectList"),
-        @NamedAttributeNode("supplier")
-} )
+//@NamedEntityGraph(name = "product-entity-graph",attributeNodes = {
+//        //@NamedAttributeNode("guaranteeList"),
+//        //@NamedAttributeNode("productBaseDetailList"),
+//        //@NamedAttributeNode("projectList"),
+//        //@NamedAttributeNode("supplier")
+//} )
 @Entity(name = "Product")
 @Table(name = "PRODUCTS",catalog = "ASM",schema = "test")
 public class Product implements Serializable {
@@ -31,7 +31,7 @@ public class Product implements Serializable {
     private Date buyDate;
     private Set<Guarantee> guaranteeList;
     private Set<ProductBaseDetail> productBaseDetailList;
-    private Set<Project> projectList;
+    //private Set<Project> projectList;
     @JsonIgnore
     private Supplier supplier;
     private Long supplierId;
@@ -42,14 +42,13 @@ public class Product implements Serializable {
         super();
     }
 
-    public Product(Long productId, String name, String health, Date buyDate, Set<Guarantee> guaranteeList, Set<ProductBaseDetail> productBaseDetailList, Set<Project> projectList, Supplier supplier, Long supplierId) {
+    public Product(Long productId, String name, String health, Date buyDate, Set<Guarantee> guaranteeList, Set<ProductBaseDetail> productBaseDetailList, Supplier supplier, Long supplierId) {
         this.productId = productId;
         this.name = name;
         this.health = health;
         this.buyDate = buyDate;
         this.guaranteeList = guaranteeList;
         this.productBaseDetailList = productBaseDetailList;
-        this.projectList = projectList;
         this.supplier = supplier;
         this.supplierId = supplierId;
     }
@@ -101,6 +100,35 @@ public class Product implements Serializable {
         this.guaranteeList = guaranteeList;
     }
 
+
+    //    @OneToMany(cascade = CascadeType.ALL,mappedBy = "product")
+//    public Set<Guarantee> getGuaranteeList() {
+//        return guaranteeList;
+//    }
+//
+//    public void setGuaranteeList(Set<Guarantee> guaranteeList) {
+//        this.guaranteeList = guaranteeList;
+//    }
+//
+//    @OneToMany(cascade = CascadeType.ALL,mappedBy = "product")
+//    public Set<ProductBaseDetail> getProductBaseDetailList() {
+//        return productBaseDetailList;
+//    }
+//
+//    public void setProductBaseDetailList(Set<ProductBaseDetail> productBaseDetailList) {
+//        this.productBaseDetailList = productBaseDetailList;
+//    }
+
+//    @ManyToMany(cascade = CascadeType.ALL,mappedBy = "productList")
+//    public Set<Project> getProjectList() {
+//        return projectList;
+//    }
+//
+//    public void setProjectList(Set<Project> projectList) {
+//        this.projectList = projectList;
+//    }
+
+
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "product")
     public Set<ProductBaseDetail> getProductBaseDetailList() {
         return productBaseDetailList;
@@ -108,15 +136,6 @@ public class Product implements Serializable {
 
     public void setProductBaseDetailList(Set<ProductBaseDetail> productBaseDetailList) {
         this.productBaseDetailList = productBaseDetailList;
-    }
-
-    @ManyToMany(cascade = CascadeType.ALL,mappedBy = "productList")
-    public Set<Project> getProjectList() {
-        return projectList;
-    }
-
-    public void setProjectList(Set<Project> projectList) {
-        this.projectList = projectList;
     }
 
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)

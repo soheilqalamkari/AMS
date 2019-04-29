@@ -2,6 +2,7 @@ package com.asm.managment.Service.Impl;
 
 import com.asm.managment.Dao.Interface.ProductDao;
 import com.asm.managment.Model.Product;
+import com.asm.managment.Model.ProductBaseDetail;
 import com.asm.managment.Service.Interface.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,11 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product findProductById(Long productId) {
         return productDao.findProductById(productId);
+    }
+
+    @Override
+    public Product findProductByDetails(Long productId) {
+        return productDao.findProductByDetails(productId);
     }
 
     @Override

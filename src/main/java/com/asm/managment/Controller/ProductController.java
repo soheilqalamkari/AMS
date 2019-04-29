@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.ManyToMany;
+import javax.persistence.NoResultException;
 import java.util.List;
 import java.util.Map;
 
@@ -90,7 +91,15 @@ public class ProductController {
 //        return new ResponseEntity<>(HttpStatus.OK);
 //    }
 
-
+    @GetMapping(value = "/api/v1.0/details/{productId}")
+    public ResponseEntity<Product> showProductByBaseDetails(@PathVariable Long productId){
+        try{
+            Product product = productService.findProductByDetails(productId);
+            return new ResponseEntity<>(product,HttpStatus.OK);
+        }catch (NoResultException e){
+            return null;
+        }
+    }
 
 
 
