@@ -42,7 +42,7 @@ public class ProductDaoImpl implements ProductDao {
     @Override
     public Product findProductByDetails(Long productId) {
         try {
-            Product productTypedQuery = entityManager.createQuery("select p from  Product p join fetch p.productBaseDetailList b join fetch p.guaranteeList g join fetch p.supplier s where b.product.productId=:productId and g.product.productId=:productId",Product.class)
+            Product productTypedQuery = entityManager.createQuery("select p from  Product p join fetch p.productBaseDetailList b join fetch p.guaranteeList g join fetch p.supplier s where b.product.productId=:productId",Product.class)
                     .setParameter("productId",productId)
                     .getSingleResult();
             return productTypedQuery;

@@ -78,12 +78,12 @@ public class ProductController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-
-    @GetMapping(value = "/api/v1.0/ProductsInfo",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<ProductBaseDetail>> allDetails(){
-        productBaseDetailService.findAllProductBaseDetails();
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
+//
+//    @GetMapping(value = "/api/v1.0/ProductsInfo",produces = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity<List<ProductBaseDetail>> allDetails(){
+//        productBaseDetailService.findAllProductBaseDetails();
+//        return new ResponseEntity<>(HttpStatus.OK);
+//    }
 
 //    @PostMapping(value = "/api/v1.0/Adddetail",consumes = MediaType.APPLICATION_JSON_VALUE)
 //    public ResponseEntity<ProductBaseDetail> saveBaseProductDetail(@RequestBody ProductBaseDetail productBaseDetail){

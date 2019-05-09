@@ -66,7 +66,7 @@ public class CommonFilter {
         }
 
     }
-
+    
     @GetMapping(value = "/api/v1.0/guarantees",consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Guarantee>>filterGuaranteeByNameAndDuring(@RequestBody Guarantee guarantee){
         List<Guarantee> guaranteeList;
